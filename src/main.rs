@@ -1,7 +1,9 @@
 use std::env;
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
-
 use actix_web::middleware::Logger;
+
+mod utils;
+
 
 #[get("/")]
 async fn default_route() -> impl Responder{
