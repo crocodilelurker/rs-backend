@@ -1,11 +1,19 @@
 use actix_web::{get, web, HttpResponse, Responder};
+use crate::utils::api_response;
 
 #[get("/")]
 pub async fn default_route() -> impl Responder{
-    HttpResponse::Ok().body("Welcome to the Actix Web Backend!")
+    api_response::ApiResponse::new(
+        200,
+        "Welcome to the Actix Web API!".to_string(),
+    )
+
 }
 #[get("/hello/{name}")]
 pub async fn greet(name: web::Path<String>) -> impl Responder {
     let greeting = format!("Hello, {}!", name);
-    HttpResponse::Ok().body(greeting)
+    api_response::ApiResponse::new(
+        200,
+        greeting,
+    )
 }
